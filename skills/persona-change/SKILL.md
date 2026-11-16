@@ -46,7 +46,7 @@ slack-loop が動いている間にペルソナだけ書き換えても、動い
 ### C: 新しく作る（new）
 
 1. いまのキャラを残すか聞く。残す場合は `ペルソナ予備/ペルソナ.md` に移す（既にある場合は上書きしてよいか確認する）
-2. persona-setup の Step 5（5-1〜5-3）と同じ手順で、プロフィールとつぶやきのコピペから新しいキャラを作る。ひな形は [references/persona-template.md](references/persona-template.md) を使う
+2. persona-setup の Step 5（5-1〜5-4）と同じ手順で、プロフィールとつぶやきのコピペから新しいキャラを作る。ひな形は [references/persona-template.md](references/persona-template.md) を使う
 3. リベシティの自分ではない、架空のキャラを作りたいと言われた場合は、名前・設定・口調・話題を直接聞いて作る
 
 ### D: ファイルを取り込む（パス指定）
