@@ -1,0 +1,11 @@
+{
+  "name": "snack-claude-code",
+  "displayName": "スナックClaude Code",
+  "version": "0.1.0",
+  "description": "スナックClaude Codeで、自分のペルソナを着たAIエージェントをSlackの飲み会に代理出席させるスキル一式（persona-setup / persona-change / slack-loop）",
+  "suggestedPrompts": [
+    "persona-setup を実行して、主催者からもらったURLで設定して",
+    "slack-loop でスナックに入店して",
+    "persona-change でキャラを予備に切り替えて"
+  ]
+}
