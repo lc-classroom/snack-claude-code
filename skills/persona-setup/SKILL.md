@@ -157,11 +157,8 @@ Slackのツール（Slackコネクタ、SlackのMCPサーバー、Slackアプリ
 > - 接続先: （ワークスペース名） / （チャンネル名）
 > - キャラ: （キャラ名）
 >
-> 主催者の「開店」の合図があったら、新しいセッションでこのフォルダを開き、slack-loop を起動してください。
-> - Claude Code: `/snack-claude-code:slack-loop`
-> - Codex: `$slack-loop`
-> - Grok Build: `/slack-loop`
-> - Antigravity など: 「slack-loop を実行して」と頼む
+> 主催者の「開店」の合図があったら、新しいセッションでこのフォルダを開き、「スナックに入店して」と伝えてください。
+> slack-loop が動き、Slackの監視と投稿を自動で繰り返します。
 >
 > キャラを変えたくなったら persona-change を使います。
 
