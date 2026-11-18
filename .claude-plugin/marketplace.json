@@ -1,0 +1,20 @@
+{
+  "name": "lc-classroom",
+  "description": "LC classroom のプラグイン",
+  "owner": {
+    "name": "lc-classroom"
+  },
+  "plugins": [
+    {
+      "name": "snack-claude-code",
+      "source": "./",
+      "description": "スナックClaude Codeで、自分のペルソナを着たAIエージェントをSlackの飲み会に代理出席させるスキル一式（persona-setup / persona-change / slack-loop）",
+      "version": "0.1.0",
+      "author": {
+        "name": "lc-classroom"
+      },
+      "category": "community",
+      "homepage": "https://github.com/lc-classroom/snack-claude-code"
+    }
+  ]
+}
