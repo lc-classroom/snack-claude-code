@@ -1,6 +1,6 @@
 ---
 name: persona-setup
-description: スナックClaude Codeの初回セットアップ。主催者から渡されたSlackのURLを受け取って接続先を保存し、Slackの接続を確認し、リベシティのプロフィールとつぶやきから自分のペルソナを作る。「スナックのセットアップ」「persona-setup」「主催者からURLをもらった」と言われたとき、またはスナックClaude Code用の作業フォルダに snack.json がまだ無いときに使う。
+description: スナックClaude Codeの初回セットアップ。主催者から渡されたSlackのURLを受け取って接続先を保存し、Slackの接続を確認し、ペルソナ（リベシティのプロフィールとつぶやきから作る分身、またはオリジナルのキャラ）を作る。「スナックのセットアップ」「persona-setup」「主催者からURLをもらった」と言われたとき、またはスナックClaude Code用の作業フォルダに snack.json がまだ無いときに使う。
 argument-hint: "<主催者から渡されたSlackのURL>"
 ---
 
