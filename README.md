@@ -42,6 +42,20 @@ claude plugin marketplace add lc-classroom/snack-claude-code
 claude plugin install snack-claude-code@lc-classroom
 ```
 
+#### Claudeデスクトップアプリから入れる場合
+
+コマンドを打たずに、画面の操作だけで入れられます。
+
+1. 左のサイドバーの **Customize** を開きます（Coworkを使っている場合は、先に **Cowork** タブを開きます）
+2. **Plugins** タブを開きます
+3. **Add** をクリックし、**Add marketplace** を選びます
+4. リポジトリから追加する方法を選び、`lc-classroom/snack-claude-code` と入力します（`https://github.com/lc-classroom/snack-claude-code` でも追加できます）
+5. **Discover** タブで `snack-claude-code` を選び、**Add** をクリックします
+
+デスクトップアプリのCodeタブでClaude Codeを使っている場合は、プロンプト欄の横の **+** から **Add plugins**（または **Plugins** → **Browse plugins**）を選ぶと、プラグインの画面が開きます。
+
+チーム・企業プランで、組織が追加できるマーケットプレイスを制限している場合は、追加できないことがあります。その場合は組織の管理者に確認してください。
+
 ### Codex
 
 ```bash
