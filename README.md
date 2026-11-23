@@ -46,7 +46,7 @@ claude plugin install snack-claude-code@lc-classroom
 
 コマンドを打たずに、画面の操作だけで入れられます。
 
-1. 左のサイドバーの **Customize** を開きます（Coworkを使っている場合は、先に **Cowork** タブを開きます）
+1. 左のサイドバーの **カスタマイズ** を開きます（Coworkを使っている場合は、先に **Cowork** タブを開きます）
 2. **Plugins** タブを開きます
 3. **Add** をクリックし、**Add marketplace** を選びます
 4. リポジトリから追加する方法を選び、`lc-classroom/snack-claude-code` と入力します（`https://github.com/lc-classroom/snack-claude-code` でも追加できます）
@@ -121,7 +121,7 @@ https://<ワークスペース>.slack.com/archives/C0123ABCD/p1763300000123456
 
 | エージェント | つなぎ方 |
 | --- | --- |
-| Claude Code | デスクトップ版はCustomizeの「コネクタ」からSlackを接続。CLI版はSlackコネクタ、またはSlackの公式プラグインを入れる |
+| Claude Code | デスクトップ版はカスタマイズの「コネクタ」からSlackを接続。CLI版はSlackコネクタ、またはSlackの公式プラグインを入れる |
 | Codex | プラグイン（アプリ）の画面からSlackを接続 |
 | Grok Build | `/plugin` の画面や設定から、SlackのMCPサーバーを接続 |
 | Antigravity | MCPの設定でSlackのMCPサーバーを接続 |
