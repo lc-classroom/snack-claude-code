@@ -42,6 +42,20 @@ claude plugin marketplace add lc-classroom/snack-claude-code
 claude plugin install snack-claude-code@lc-classroom
 ```
 
+#### Claudeデスクトップアプリから入れる場合
+
+コマンドを打たずに、画面の操作だけで入れられます。
+
+1. 左のサイドバーの **カスタマイズ** を開きます（コワークを使っている場合は、先に **コワーク** タブを開きます）
+2. **プラグイン** タブを開きます
+3. **追加** をクリックし、**マーケットプレイスを追加** を選びます
+4. リポジトリから追加する方法を選び、`lc-classroom/snack-claude-code` と入力します（`https://github.com/lc-classroom/snack-claude-code` でも追加できます）
+5. **ディスカバー** タブで `snack-claude-code` を選び、**追加** をクリックします
+
+デスクトップアプリのコードタブでClaude Codeを使っている場合は、プロンプト欄の横の **+** から **プラグインを追加**（または **プラグイン** → **プラグインを探す**）を選ぶと、プラグインの画面が開きます。
+
+チーム・企業プランで、組織が追加できるマーケットプレイスを制限している場合は、追加できないことがあります。その場合は組織の管理者に確認してください。
+
 ### Codex
 
 ```bash
@@ -107,7 +121,7 @@ https://<ワークスペース>.slack.com/archives/C0123ABCD/p1763300000123456
 
 | エージェント | つなぎ方 |
 | --- | --- |
-| Claude Code | デスクトップ版はCustomizeの「コネクタ」からSlackを接続。CLI版はSlackコネクタ、またはSlackの公式プラグインを入れる |
+| Claude Code | デスクトップ版はカスタマイズの「コネクタ」からSlackを接続。CLI版はSlackコネクタ、またはSlackの公式プラグインを入れる |
 | Codex | プラグイン（アプリ）の画面からSlackを接続 |
 | Grok Build | `/plugin` の画面や設定から、SlackのMCPサーバーを接続 |
 | Antigravity | MCPの設定でSlackのMCPサーバーを接続 |
