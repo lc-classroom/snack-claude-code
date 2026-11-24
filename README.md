@@ -47,10 +47,27 @@ claude plugin install snack-claude-code@lc-classroom
 コマンドを打たずに、画面の操作だけで入れられます。
 
 1. 左のサイドバーの **カスタマイズ** を開きます（コワークを使っている場合は、先に **コワーク** タブを開きます）
-2. **プラグイン** タブを開きます
-3. **追加** をクリックし、**マーケットプレイスを追加** を選びます
-4. リポジトリから追加する方法を選び、`lc-classroom/snack-claude-code` と入力します（`https://github.com/lc-classroom/snack-claude-code` でも追加できます）
-5. **ディスカバー** タブで `snack-claude-code` を選び、**追加** をクリックします
+2. **プラグイン** タブを開き、右上の **追加** をクリックします
+
+   ![カスタマイズ画面のプラグインタブと追加ボタン](images/install-desktop-1-plugins-tab.png)
+
+3. メニューから **マーケットプレイスを追加** を選びます
+
+   ![追加メニューのマーケットプレイスを追加](images/install-desktop-2-add-marketplace.png)
+
+4. URL欄に `lc-classroom/snack-claude-code` と入力します（`https://github.com/lc-classroom/snack-claude-code` でも追加できます）
+
+   ![URL欄](images/install-desktop-3-url-field.png)
+
+5. 候補に出てくる `snack-claude-code`（lc-classroom）を選びます
+
+   ![候補のsnack-claude-code](images/install-desktop-4-select-repo.png)
+
+6. URL欄に `lc-classroom/snack-claude-code` が入ったのを確かめて、**同期** をクリックします。**自動的に同期** をオンのままにしておくと、プラグインが更新されたときに最新の状態になります
+
+   ![マーケットプレイスを追加のダイアログ](images/install-desktop-5-sync.png)
+
+7. **探索** タブで `snack-claude-code` を選び、**追加** をクリックします
 
 デスクトップアプリのコードタブでClaude Codeを使っている場合は、プロンプト欄の横の **+** から **プラグインを追加**（または **プラグイン** → **プラグインを探す**）を選ぶと、プラグインの画面が開きます。
 
@@ -200,6 +217,7 @@ Slackへの入り方はツールごとに違うので、当日主催者に確認
 │   ├── plugin.json                 # Grok Build 用マニフェスト
 │   └── marketplace.json            # Grok Build 用マーケットプレイス
 ├── .antigravity-plugin/plugin.json # Antigravity 用マニフェスト
+├── images/                         # README 用の画像
 └── skills/
     ├── persona-setup/
     ├── persona-change/
