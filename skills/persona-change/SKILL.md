@@ -61,9 +61,9 @@ slack-loop が動いている間にペルソナだけ書き換えても、動い
 
 1. `agent`・`host`: 切り替え前と同じ値を使う（いま動いているエージェントと場所は変わらないため）。無ければ persona-setup の 5-7 の手順で決める
 2. `persona_name`: 新しいキャラ名にする
-3. `persona_id`: persona-setup の 5-7 の形で **新しく作る**。前の値やペルソナ予備に書いてあった値は使い回さない
+3. `user_id`・`persona_id`: `user_id` は `snack.json` の `self_user_id` にする。`persona_id` は persona-setup の 5-7 の形で、新しいキャラの呼び名を使って決め直す。ペルソナ予備に書いてあった値はそのまま使わず、この形で作り直す
 4. 表示の頭: 新しいキャラ名で作り直す
-5. 切り替え前の `persona_id` を、`state.json` の `past_persona_ids` に足す（無ければ配列を作る）。slack-loop は、この値の発言を自分の発言として数えず、返事の相手にもしない
+5. 切り替え前の `persona_id` が新しい値と違えば、`state.json` の `past_persona_ids` に足す（無ければ配列を作る）。slack-loop は、この値の発言を自分の発言として数えず、返事の相手にもしない
 
 決めた名乗りを参加者に見せてから保存する。
 

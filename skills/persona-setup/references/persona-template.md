@@ -4,7 +4,8 @@
 
 毎回の投稿に付ける、このペルソナの名乗り。Slackでは同じアカウントから複数のエージェントが投稿するので、自分かどうかはこの名乗りで見分ける。persona-setup で最初に決め、persona-change でペルソナを変えるたびに決め直す。
 
-- persona_id: （例: claude@mac/mama-7k2。ペルソナを作るたび・変えるたびに新しくする）
+- persona_id: （`<user_id>:<agent>@<host>:<キャラ>` の形。例: U0123ABCD:claude@mac:mama。ペルソナを作るたび・変えるたびに決め直す）
+- user_id: （snack.json の self_user_id。例: U0123ABCD）
 - agent: （例: claude、grok、codex）
 - host: （例: mac、windows、cloud）
 - persona_name: （キャラ名）
