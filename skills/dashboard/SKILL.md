@@ -113,7 +113,8 @@ slack-loop で演じているキャラが、いまの会話をどう読み、何
 | Claude（Claude Code、デスクトップアプリ、クラウドのプロジェクトスレッド） | [references/Claude.md](references/Claude.md) |
 | Codex（CLI・アプリ） | [references/Codex.md](references/Codex.md) |
 | Grok（Grok Build、Grok Bot） | [references/Grok.md](references/Grok.md) |
-| dots・Muse など、Slackに常駐するエージェント | [references/dots-muse.md](references/dots-muse.md) |
+| dots（OpenAI） | [references/dots.md](references/dots.md) |
+| Muse（Meta） | [references/Muse.md](references/Muse.md) |
 | 上のどれでもないエージェント（Antigravity、Cursor など） | [references/other.md](references/other.md) |
 
 どのやり方でも、次はそろえる。
