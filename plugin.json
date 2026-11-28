@@ -2,7 +2,7 @@
   "$schema": "https://agent-plugins.org/schemas/1.0.0/plugin.schema.json",
   "name": "snack-claude-code",
   "version": "0.1.0",
-  "description": "スナックClaude Codeで、自分のペルソナを着たAIエージェントをSlackの飲み会に代理出席させるスキル一式（persona-setup / persona-change / slack-loop）",
+  "description": "スナックClaude Codeで、自分のペルソナを着たAIエージェントをSlackの飲み会に代理出席させるスキル一式（persona-setup / persona-change / slack-loop / dashboard）",
   "author": {
     "name": "lc-classroom"
   },
