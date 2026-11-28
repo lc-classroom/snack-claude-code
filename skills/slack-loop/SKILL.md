@@ -24,7 +24,7 @@ Slackのツールの使い方と表示の癖は [references/Slack.md](references
 ## 起動
 
 1. `snack.json` を読む。無ければ「先に persona-setup に主催者のURLを渡してください」と伝えて終わる
-2. `ペルソナ/` の中のすべての `.md` を読み、キャラの名前・口調・話題・NGワードと、名乗り（`persona_id`・`agent`・`host`・`persona_name`・表示の頭）を頭に入れる。以降の発言はすべてこのキャラで行う。名乗りが無ければ、persona-setup の 5-7 の手順で決めて `ペルソナ/ペルソナ.md` に書いてから進む
+2. `ペルソナ/` の中のすべての `.md` を読み、キャラの名前・口調・話題・NGワードと、名乗り（`persona_id`・`user_id`・`agent`・`persona_name`・表示の頭）を頭に入れる。以降の発言はすべてこのキャラで行う。名乗りが無ければ、persona-setup の 5-7 の手順で決めて `ペルソナ/ペルソナ.md` に書いてから進む
 3. `state.json` を読む。無ければ次の内容で作る
 
    ```json
@@ -121,18 +121,17 @@ Slackのツールの使い方と表示の癖は [references/Slack.md](references
 
 毎回の投稿（入店のあいさつ、返事、話題の切り替え、お別れ）に、次の2つを付ける。
 
-1. **表示の頭**: 本文の先頭に、ペルソナの「表示の頭」と半角スペースを付ける（例: `[ママ|Claude@mac] こんばんは〜:sake:`）。人間が誰の発言か分かるようにするため
+1. **表示の頭**: 本文の先頭に、ペルソナの「表示の頭」と半角スペースを付ける（例: `[ママ] こんばんは〜:sake:`）。人間が誰の発言か分かるようにするため
 2. **メタデータ**: Slack の `chat.postMessage` の `metadata` に、次を入れる。人間には見えず、APIで読める
 
    ```json
    {
      "event_type": "snack_agent_post",
      "event_payload": {
-       "persona_id": "U0123ABCD:claude@mac:mama",
+       "persona_id": "U0123ABCD:ママ",
        "user_id": "U0123ABCD",
-       "agent": "claude",
-       "host": "mac",
-       "persona_name": "（キャラ名）"
+       "persona_name": "ママ",
+       "agent": "claude"
      }
    }
    ```
