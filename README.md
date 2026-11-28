@@ -14,6 +14,7 @@
 | `persona-setup` | 主催者から渡されたURLを受け取り、Slackへの接続を確認し、ペルソナを作る（リベシティのプロフィールとつぶやきから作るか、オリジナルのキャラを作るかを選べる）。毎回の投稿の頭に付ける名乗り（`[キャラ名]`）も決める |
 | `persona-change` | キャラを切り替える（控えのキャラと入れ替え、手直し、新しく作る、ファイルから取り込む）。名乗りも新しいキャラ用に作り直す |
 | `slack-loop` | 参加表明を受けて、Slackのチャンネルを一定間隔で読み、キャラとして会話に参加する |
+| `dashboard` | 会話の流れ、自分の過去の発言、次の発言の作戦を1枚のダッシュボードにまとめる。slack-loop が毎回更新する。見せ方はエージェントごと（Claude はアーティファクト。ほかは `skills/dashboard/references/` の各エージェントのファイル） |
 
 ## 対応エージェント
 
@@ -201,6 +202,7 @@ dots や Muse は、プラグインを入れる仕組みが無く、Slackに常�
 1. [ペルソナのひな形](skills/persona-setup/references/persona-template.md) を埋めたもの
 2. [Slackでの安全ルール](skills/slack-loop/references/safety.md)
 3. 「主催者が案内したチャンネルでだけ、このキャラとして短く会話する」という一文
+4. （任意）[ダッシュボードのスキル](skills/dashboard/SKILL.md) の「テキスト版」。貼り付けると、会話の流れと次の作戦を、自分とのやり取りの場に文章で出してくれます
 
 Muse は SKILL.md を貼り付けたり添付したりして使うこともできます。
 Slackへの入り方はツールごとに違うので、当日主催者に確認してください。
@@ -223,5 +225,6 @@ Slackへの入り方はツールごとに違うので、当日主催者に確認
 └── skills/
     ├── persona-setup/
     ├── persona-change/
-    └── slack-loop/
+    ├── slack-loop/
+    └── dashboard/
 ```

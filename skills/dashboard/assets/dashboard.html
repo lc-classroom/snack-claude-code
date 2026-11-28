@@ -1,0 +1,224 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="refresh" content="60">
+<title>スナック作戦ボード</title>
+<style>
+  :root {
+    --bg: #f7f4ef;
+    --surface: #ffffff;
+    --surface-2: #f1ece4;
+    --text: #2a2420;
+    --muted: #6f655c;
+    --border: #e2d9cc;
+    --accent: #b4462f;
+    --self: #b4462f;
+    --agent: #3d6fa8;
+    --human: #3c8a5a;
+    --self-bg: #fbe9e4;
+    --agent-bg: #e6eef8;
+    --human-bg: #e5f3ea;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --bg: #1a1614;
+      --surface: #241f1c;
+      --surface-2: #2e2824;
+      --text: #f1ebe4;
+      --muted: #ada296;
+      --border: #3a332e;
+      --accent: #e0775d;
+      --self: #e0775d;
+      --agent: #7fa8d9;
+      --human: #79c493;
+      --self-bg: #3a2620;
+      --agent-bg: #1f2a38;
+      --human-bg: #1f3227;
+    }
+  }
+  :root[data-theme="dark"] {
+    --bg: #1a1614;
+    --surface: #241f1c;
+    --surface-2: #2e2824;
+    --text: #f1ebe4;
+    --muted: #ada296;
+    --border: #3a332e;
+    --accent: #e0775d;
+    --self: #e0775d;
+    --agent: #7fa8d9;
+    --human: #79c493;
+    --self-bg: #3a2620;
+    --agent-bg: #1f2a38;
+    --human-bg: #1f3227;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--text);
+    font-family: "Hiragino Sans", "Noto Sans JP", system-ui, sans-serif;
+    font-size: 15px;
+    line-height: 1.6;
+  }
+  main { max-width: 1100px; margin: 0 auto; padding: 20px 16px 40px; }
+  header { display: flex; flex-wrap: wrap; align-items: baseline; gap: 8px 16px; margin-bottom: 16px; }
+  h1 { font-size: 22px; margin: 0; }
+  h2 { font-size: 15px; margin: 0 0 10px; color: var(--muted); font-weight: 600; letter-spacing: 0.04em; }
+  .meta { color: var(--muted); font-size: 13px; }
+  .grid { display: grid; gap: 16px; grid-template-columns: 1fr; }
+  @media (min-width: 860px) { .grid { grid-template-columns: 1.3fr 1fr; } .span { grid-column: 1 / -1; } }
+  section { background: var(--surface); border: 1px solid var(--border); border-radius: 12px; padding: 16px; min-width: 0; }
+  .stats { display: grid; grid-template-columns: repeat(auto-fit, minmax(130px, 1fr)); gap: 10px; }
+  .stat { background: var(--surface-2); border-radius: 8px; padding: 10px 12px; }
+  .stat b { display: block; font-size: 18px; }
+  .stat span { color: var(--muted); font-size: 12px; }
+  .strategy .action { font-size: 20px; font-weight: 700; color: var(--accent); }
+  dl { margin: 10px 0 0; display: grid; grid-template-columns: max-content 1fr; gap: 6px 12px; }
+  dt { color: var(--muted); font-size: 13px; }
+  dd { margin: 0; overflow-wrap: anywhere; }
+  .chips { display: flex; flex-wrap: wrap; gap: 6px; }
+  .chip { background: var(--surface-2); border-radius: 999px; padding: 2px 10px; font-size: 13px; }
+  ul.list { list-style: none; margin: 0; padding: 0; display: grid; gap: 8px; }
+  .msg { border-left: 4px solid var(--border); padding: 6px 10px; border-radius: 6px; background: var(--surface-2); overflow-wrap: anywhere; }
+  .msg.self { border-color: var(--self); background: var(--self-bg); }
+  .msg.agent { border-color: var(--agent); background: var(--agent-bg); }
+  .msg.human { border-color: var(--human); background: var(--human-bg); }
+  .msg .head { display: flex; flex-wrap: wrap; gap: 4px 10px; font-size: 12px; color: var(--muted); }
+  .msg .who { font-weight: 700; color: var(--text); }
+  .msg .note { color: var(--accent); }
+  .aim { font-size: 13px; color: var(--muted); }
+  .topic.now { font-weight: 700; color: var(--accent); }
+  .empty { color: var(--muted); font-size: 13px; }
+  .legend { display: flex; gap: 12px; font-size: 12px; color: var(--muted); margin-bottom: 8px; }
+  .legend i { display: inline-block; width: 10px; height: 10px; border-radius: 2px; margin-right: 4px; vertical-align: middle; }
+</style>
+</head>
+<body>
+<main>
+  <header>
+    <h1 id="title">スナック作戦ボード</h1>
+    <span class="meta" id="sub"></span>
+  </header>
+  <div class="grid">
+    <section class="span"><h2>いまの状況</h2><div class="stats" id="stats"></div></section>
+    <section class="strategy"><h2>次の発言の作戦</h2><div id="strategy"></div></section>
+    <section><h2>話題の移り変わり</h2><ul class="list" id="topics"></ul></section>
+    <section><h2>会話の流れ</h2>
+      <div class="legend"><span><i style="background:var(--self)"></i>自分</span><span><i style="background:var(--agent)"></i>エージェント</span><span><i style="background:var(--human)"></i>人間</span></div>
+      <ul class="list" id="flow"></ul></section>
+    <section><h2>自分の過去の発言</h2><ul class="list" id="myposts"></ul></section>
+    <section class="span"><h2>判断の記録</h2><ul class="list" id="decisions"></ul></section>
+  </div>
+</main>
+<script id="dashboard-data" type="application/json">{}</script>
+<script>
+(function () {
+  var d = {};
+  try { d = JSON.parse(document.getElementById("dashboard-data").textContent || "{}"); } catch (e) { d = {}; }
+  function el(tag, cls, text) {
+    var n = document.createElement(tag);
+    if (cls) n.className = cls;
+    if (text !== undefined && text !== null) n.textContent = String(text);
+    return n;
+  }
+  function empty(target, text) { target.appendChild(el("li", "empty", text || "まだありません")); }
+  var persona = d.persona || {};
+  var st = d.status || {};
+  if (persona.name) document.getElementById("title").textContent = (persona.display_head || persona.name) + " の作戦ボード";
+  var sub = [];
+  if (d.channel) sub.push(d.channel);
+  if (d.updated_at) sub.push("更新 " + d.updated_at);
+  sub.push(st.running === false ? "停止中" : "ループ中");
+  document.getElementById("sub").textContent = sub.join(" ・ ");
+
+  var stats = document.getElementById("stats");
+  [
+    ["投稿数", (st.posts != null ? st.posts : "-") + (st.max_posts ? " / " + st.max_posts : "")],
+    ["いまの話題", st.current_topic || "-"],
+    ["この話題での自分の発言", st.topic_own_posts != null ? st.topic_own_posts + " 回" : "-"],
+    ["話題を粘る時間", st.topic_patience_minutes ? st.topic_patience_minutes + " 分" : "-"],
+    ["終了時刻", st.end_at || "止めるまで"]
+  ].forEach(function (s) {
+    var box = el("div", "stat");
+    box.appendChild(el("b", "", s[1]));
+    box.appendChild(el("span", "", s[0]));
+    stats.appendChild(box);
+  });
+
+  var sg = d.strategy || {};
+  var sgBox = document.getElementById("strategy");
+  sgBox.appendChild(el("div", "action", sg.next_action || "未定"));
+  var dl = el("dl");
+  [["相手", sg.target], ["方針", sg.plan], ["理由", sg.why], ["話題を変えるまで", sg.topic_change]].forEach(function (r) {
+    if (!r[1]) return;
+    dl.appendChild(el("dt", "", r[0]));
+    dl.appendChild(el("dd", "", r[1]));
+  });
+  [["次に出したい話題", sg.next_topics], ["避けること", sg.avoid]].forEach(function (r) {
+    if (!r[1] || !r[1].length) return;
+    dl.appendChild(el("dt", "", r[0]));
+    var dd = el("dd"); var chips = el("div", "chips");
+    r[1].forEach(function (t) { chips.appendChild(el("span", "chip", t)); });
+    dd.appendChild(chips); dl.appendChild(dd);
+  });
+  sgBox.appendChild(dl);
+
+  var topics = document.getElementById("topics");
+  (d.topics || []).slice().reverse().forEach(function (t) {
+    var li = el("li", "msg");
+    var head = el("div", "head");
+    head.appendChild(el("span", "", t.started_at || ""));
+    if (t.by) head.appendChild(el("span", "", "出した人 " + t.by));
+    if (t.status) head.appendChild(el("span", "", t.status));
+    li.appendChild(head);
+    li.appendChild(el("div", "topic" + (t.status === "いま" ? " now" : ""), t.topic));
+    topics.appendChild(li);
+  });
+  if (!topics.children.length) empty(topics);
+
+  var flow = document.getElementById("flow");
+  (d.flow || []).slice().reverse().forEach(function (m) {
+    var kind = ["self", "agent", "human"].indexOf(m.kind) >= 0 ? m.kind : "";
+    var li = el("li", "msg " + kind);
+    var head = el("div", "head");
+    head.appendChild(el("span", "", m.time || ""));
+    head.appendChild(el("span", "who", m.speaker || ""));
+    if (m.topic) head.appendChild(el("span", "", m.topic));
+    if (m.note) head.appendChild(el("span", "note", m.note));
+    li.appendChild(head);
+    li.appendChild(el("div", "", m.text));
+    flow.appendChild(li);
+  });
+  if (!flow.children.length) empty(flow);
+
+  var my = document.getElementById("myposts");
+  (d.my_posts || []).slice().reverse().forEach(function (p) {
+    var li = el("li", "msg self");
+    var head = el("div", "head");
+    head.appendChild(el("span", "", p.time || ""));
+    head.appendChild(el("span", "who", p.kind || ""));
+    if (p.reply_to) head.appendChild(el("span", "", "→ " + p.reply_to));
+    li.appendChild(head);
+    li.appendChild(el("div", "", p.text));
+    if (p.aim) li.appendChild(el("div", "aim", "狙い: " + p.aim));
+    my.appendChild(li);
+  });
+  if (!my.children.length) empty(my);
+
+  var dec = document.getElementById("decisions");
+  (d.decisions || []).slice().reverse().forEach(function (x) {
+    var li = el("li", "msg");
+    var head = el("div", "head");
+    head.appendChild(el("span", "", x.time || ""));
+    head.appendChild(el("span", "who", x.decision || ""));
+    li.appendChild(head);
+    if (x.reason) li.appendChild(el("div", "aim", x.reason));
+    dec.appendChild(li);
+  });
+  if (!dec.children.length) empty(dec);
+})();
+</script>
+</body>
+</html>
