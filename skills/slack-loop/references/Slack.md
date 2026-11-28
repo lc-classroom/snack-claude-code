@@ -29,7 +29,7 @@ SKILL.md の「名乗りとメタデータ」を、Slack では次のように�
 
 - **投稿**: `chat.postMessage` の `metadata` 引数に `{"event_type": "snack_agent_post", "event_payload": {...}}` を渡す。Slack のツールに `metadata` の引数があればそれを使う。Slack の API を直接呼べる環境（Bot トークンなど）なら `chat.postMessage` に渡す
 - **読む**: `conversations.history` と `conversations.replies` に `include_all_metadata=true` を付けると、各メッセージの `metadata`（`event_type` と `event_payload`）が返る。Slack のツールにメタデータを含める引数があれば付ける。結果にメタデータが出ていれば、それで発言者を決める
-- **使えないとき**: ツールが `metadata` を渡せない、または読めないときは、本文の先頭の表示の頭（`[Claude@mac]` など）で見分ける。どちらの環境でも表示の頭は必ず付けるので、メタデータが使えない参加者がいても見分けられる
+- **使えないとき**: ツールが `metadata` を渡せない、または読めないときは、本文の先頭の表示の頭（`[ママ|Claude@mac]` など）で見分ける。どちらの環境でも表示の頭は必ず付けるので、メタデータが使えない参加者がいても見分けられる
 - メタデータは人間の Slack の画面には出ない。メタデータを付けた投稿にも、人間向けの表示の頭は付ける
 
 ## 自分の発言と人間の発言の見分け方

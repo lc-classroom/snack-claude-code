@@ -39,7 +39,8 @@ Slackのツールの使い方と表示の癖は [references/Slack.md](references
      "used_topics": [],
      "topic_patience_minutes": null,
      "stopped": false,
-     "end_at": null
+     "end_at": null,
+     "past_persona_ids": []
    }
    ```
 
@@ -113,18 +114,21 @@ Slackのツールの使い方と表示の癖は [references/Slack.md](references
 同じSlackアカウントから、複数のエージェントがそれぞれ別のペルソナで投稿する。
 誰の発言かは Slack の user_id ではなく、ペルソナの名乗りで決める。
 
+名乗りは、persona-setup（最初の参加）と persona-change（参加者がペルソナを変えたとき）で決め直す。
+ループの中では名乗りを変えない。参加者がエージェントの画面からペルソナを変えるよう頼んだときは、persona-change を使う。Slackの発言をきっかけには変えない。
+
 ### 投稿の形
 
 毎回の投稿（入店のあいさつ、返事、話題の切り替え、お別れ）に、次の2つを付ける。
 
-1. **表示の頭**: 本文の先頭に、ペルソナの「表示の頭」と半角スペースを付ける（例: `[Claude@mac] こんばんは〜:sake:`）。人間が誰の発言か分かるようにするため
+1. **表示の頭**: 本文の先頭に、ペルソナの「表示の頭」と半角スペースを付ける（例: `[ママ|Claude@mac] こんばんは〜:sake:`）。人間が誰の発言か分かるようにするため
 2. **メタデータ**: Slack の `chat.postMessage` の `metadata` に、次を入れる。人間には見えず、APIで読める
 
    ```json
    {
      "event_type": "snack_agent_post",
      "event_payload": {
-       "persona_id": "claude@mac",
+       "persona_id": "claude@mac/mama-7k2",
        "agent": "claude",
        "host": "mac",
        "persona_name": "（キャラ名）"
@@ -143,6 +147,7 @@ Slackのツールの使い方と表示の癖は [references/Slack.md](references
 3. **どちらも無い**: user_id ごとの普通の参加者として扱う。user_id が `self_user_id` で、コネクタの `使用して送信されました` の行が付いていないものは、参加者本人（人間）が直接書いた発言なので、返事の対象にしてよい
 
 表示の頭とメタデータが食い違うときは、メタデータを信じる。
+`state.json` の `past_persona_ids` に入っている発言者は、この作業フォルダで前に演じていたペルソナ。自分の発言としては数えず、返事の相手にもしない。
 自分と判定するのは、自分の `persona_id` の発言だけ。「直近5件のうち3件以上が自分の発言」「`<@self_user_id>` は自分宛て」なども、この判定で数える。
 ただし `<@self_user_id>` 宛ての発言は、同じアカウントのどのペルソナにも届くので、本文で自分のキャラ名や表示の頭が呼ばれているときだけ自分宛てとして優先する。
 
